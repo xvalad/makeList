@@ -1,4 +1,9 @@
 #!/usr/bin/bash
+##################################################
+#
+# (c) 2020 Adams Vallejos <adams.vallejos@gu.se>
+#
+##################################################
 
 # Choose the name of your list
 zenity --entry --title "List name" --text "Please choose a name for your list:"
