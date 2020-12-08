@@ -4,14 +4,23 @@
 # (c) 2020 Adams Vallejos <adams.vallejos@gu.se>
 #
 ##################################################
+# USAGE: log in to backup and execute
+#        bash fileLister
 
 # Choose the name of your list
 zenity --entry --title "List name" --text "Please choose a name for your list:"
 
 # Add .lst extension
+TO DO
 
+# Data path
+zenity --entry --title "Data path" --text "Enter the data directory below:" --ok-label="Accept"
+
+# STAGE 1
 # Choose files from GUI
-zenity --file-selection --multiple --filename "${PWD}/" --separator=$'\n'
+zenity --file-selection --multiple --filename "${HOME}/../../" --separator=$'\n'
 
 # Add more files
 zenity --question --text "Do you want to add more files?" --no-wrap --ok-label "Yes" --cancel-label "No" --title "Add more files"
+# RETURN TO STAGE !
+
