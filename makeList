@@ -17,7 +17,12 @@ else
     touch $FILENAME.lst
 fi
 
+zenity --file-selection --multiple --filename "${HOME}/${USER}" --separator=$'\n' >> $FILENAME.lst
+
+# Add more files
 while zenity --question --text "Do you want to add more files?" --no-wrap --ok-label "Yes" --cancel-label "No" --title "Add more files"
 do
     zenity --file-selection --multiple --filename "${HOME}/${USER}" --separator=$'\n' >> $FILENAME.lst
 done
+
+echo "List '$FILENAME.lst' successfully created!"
