@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 ##################################################
 #
 # (c) 2020 Adams Vallejos <adams.vallejos@gu.se>
@@ -25,4 +25,4 @@ do
     zenity --file-selection --multiple --filename "${HOME}/${USER}" --separator=$'\n' >> $FILENAME.lst
 done
 
-echo "List '$FILENAME.lst' successfully created!"
+zenity --info --title="Job finished" --text="List '$FILENAME.lst' successfully created!"
