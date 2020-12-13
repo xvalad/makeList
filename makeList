@@ -6,7 +6,7 @@
 ##################################################
 # USAGE:ssh in to backup and execute
 #       chmod +x makeList
-#       ./makeList 
+#       ./makeList
 
 FILENAME=$(zenity --entry --title "List name" --text "Please choose a filename (.lst):")
 if [ -e $FILENAME.lst ]
@@ -25,4 +25,5 @@ do
     zenity --file-selection --multiple --filename "${HOME}/${USER}" --separator=$'\n' >> $FILENAME.lst
 done
 
-zenity --info --title="Job finished" --text="List '$FILENAME.lst' successfully created!"
+zenity --info --title="Job finished" --text="List '$FILENAME.lst' successfully created!" --width 250
+
