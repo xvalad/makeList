@@ -1,7 +1,7 @@
 #!/bin/bash
 HOSTNAME=`hostname`
 NPROC=$(grep proc /proc/cpuinfo | wc -l )
-file="timeCPU_$HOSTNAME.tsv"
+file="timeCPU_$HOSTNAME.dat"
 rm -f $file
 for i in `seq $NPROC`
 do
