@@ -1,8 +1,6 @@
 #!/bin/sh
 #
-HOSTNAME=$(hostname)
-
-echo "\e[1;33mHi $(whoami), welcome to $(hostname)!\e[0m"
+echo "\e[1;33mHi $(logname), welcome to $(hostname)!\e[0m"
 
 if [ "$HOSTNAME" = "backup" ];
 then

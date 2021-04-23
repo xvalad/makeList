@@ -1,13 +1,12 @@
 #!/bin/sh
 #
 #    Author: Adams Vallejos
+#	USAGE put in /etc/update-motd.d/ with sudo chmod +x permission
 #
-
 USERS=$(who | cut -f 1 -d ' ' | sort -u|wc -l)
-CPUS=$(uptime | cut -f 15 -d' ')
-
-echo "\e[1;33mHi $(whoami), welcome to $(hostname)!\e[0m"
-echo "  There are currently $USERS users logged in"
-echo "  $CPUS CPUs are now busy."
-echo "  \033[5mLimit your Jobs to 20 CPUs\033[0m"
-echo $PERCENTAGE
+CPUS=$(uptime | cut -f 16 -d' ')
+echo "\e[1;33mHi $(logname), welcome to $(hostname)!\e[0m"
+echo "\e[1;33m - There are currently $USERS users logged in\e[0m"
+echo "\e[1;33m - $CPUS CPUs are now busy\e[0m"|sed 's/,/./'
+echo ""
+echo "\e[1;31m'ALERT: Limit your jobs to 20 CPUs'\e[0m"
