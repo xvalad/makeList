@@ -3,7 +3,7 @@
 #    Author: Adams Vallejos
 #
 
-USERS=$(uptime | cut -f 7 -d' ')
+USERS=$(uptime | cut -f 8 -d' ')
 CPUS=$(uptime | cut -f 15 -d' ')
 
 echo "\e[1;33mHi $(whoami), welcome to $(hostname)!\e[0m"
