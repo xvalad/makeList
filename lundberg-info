@@ -4,20 +4,14 @@
 #       USAGE put in /etc/update-motd.d/ with sudo chmod +x permission
 #	NOTE: differences in decimal notation of the uptime command  when executed at startup vs
 #		executed from terminal (dot vs comma)
-# uptime
+#
 USERS=$(who | cut -f 1 -d ' ' | sort -u|wc -l)
-# CPUS=$(uptime | cut -f 16 -d' ')
-CPUS=$(uptime | cut -f 16 -d' '|cut -f 1 -d'.')
-# echo "\e[1;33mHi $(logname), welcome to $(hostname)!\e[0m"
-# echo "\e[1;33m - $USERS users are logged in\e[0m"
-# echo "\e[1;33m - $CPUS CPUs are busy\e[0m"|sed 's/,/./'
-# echo ""
-# echo "\e[1;31m'ALERT: Limit your jobs to 20 CPUs'\e[0m"
+CPUS=$(printf "%.0f\n" `cat /proc/loadavg | cut -f 3 -d' '`)
 echo "\e[1;32mHi $(logname), welcome to $(hostname)!\e[0m"
 if [ "$CPUS" -lt 64 ] 
 then
         echo "\e[1;32m > $((64 - $CPUS)) CPUs are available\e[0m"
         echo "\e[1;33m > Limit your jobs to 20 CPUs\e[0m"
 else
-        echo "\e[1;33m > $(($CPUS - 64)) processes are queued, use a different server or try later.\e[0m"
+	echo "\e[1;31m > This server is busy, there are $(($CPUS - 64)) jobs queued.\e[0m"
 fi
