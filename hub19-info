@@ -1,8 +1,14 @@
 #!/bin/sh
 #
+# RED='\033[0;31m'
+# NC='\033[0m' # No Color
+# printf "I ${RED}love${NC} Stack Overflow\n"
+DATE=$(date +%m%d)
 echo "\e[1;33mHi $(logname), welcome to $(hostname)!\e[0m"
 
-if [ "$HOSTNAME" = "backup" ];
-then
-	echo "\033[5mDon't process data here\033[0m"
-fi;
+if [ $DATE -eq "0425" ]; then
+        echo "\e[1;32m not birthday \e[0m"
+elif [ $DATE -eq "1019" ]; then
+	echo "\e[1;31m birthday\e[0m"
+fi
+
