@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+echo "\e[1;33mHi $(logname), welcome to $(hostname)!\e[0m"
+
+if [ "$HOSTNAME" = "backup" ];
+then
+	echo "\033[5mDon't process data here\033[0m"
+fi;
