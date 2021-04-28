@@ -1,7 +1,7 @@
 #!/bin/bash
 #  Prints "date" "cpu cuota percentage"
 # Maximum 20 CPUS allowed per user
-# Returns date & CPUs used
+# Returns date & username & CPUs used
 SERVER=$(hostname)
 CPUS=$(lscpu | grep "^CPU(s):" | awk '{print $2}')
 DATE=$(date +"%Y/%m/%d-%H:%M")
