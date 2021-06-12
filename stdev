@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Usage:
+# for i in `ls test*stream`; do ./stdev $i; done > out-geom-ref.txt
+# module load gnuplot/5.2.0
+# gnuplot < plot.gp
+
+# 1st column - detector distance
+echo $1 " " | tr -dc '0-9' | cut -c6-9 | tr -d '\n'
+#           ^ print all digits from filename add 
+#                          ^ use only last 4 digits at positions 6 to 9
+#                                      ^ remove linebreaks from string
+echo " " | tr -d '\n'
+# ^print a space character to split columns
+
+# 2nd column - number of indexed images
+cat $1 | grep Cell | wc -l | tr -d '\n'
+echo " " | tr -d '\n'
+
+# 3rd column - total number of images
+cat $1 | grep filename | wc -l | tr -d '\n'
+echo " " | tr -d '\n'
+
+# 4th column - cell parameter a
+cat $1 | grep Cell | awk '{sum+=$3} END {print sum/NR}' | tr -d '\n'
+echo " " | tr -d '\n'
+
+# 5th column - stdev of a
+cat $1 | grep Cell | awk '{delta = $3 - avg; avg += delta / NR; mean2 += delta * ($3 - avg); } END { print sqrt(mean2 / (NR-1)); }'  | tr -d '\n'
+echo " " | tr -d '\n'
+
+# 6th column - cell parameter b
+cat $1 | grep Cell | awk '{sum+=$4} END {print sum/NR}' | tr -d '\n'
+echo " " | tr -d '\n'
+
+# 7th column - stdev of b
+cat $1 | grep Cell | awk '{delta = $4 - avg; avg += delta / NR; mean2 += delta * ($4 - avg); } END { print sqrt(mean2 / (NR-1)); }'  | tr -d '\n'
+echo " " | tr -d '\n'
+
+# 8th column - cell parameter c
+cat $1 | grep Cell | awk '{sum+=$5} END {print sum/NR}' | tr -d '\n'
+echo " " | tr -d '\n'
+
+# 9th column - stdev of c
+cat $1 | grep Cell | awk '{delta = $5 - avg; avg += delta / NR; mean2 += delta * ($5 - avg); } END { print sqrt(mean2 / (NR-1)); }'  
