@@ -2,7 +2,7 @@
 #
 # Script to compres a list of folders for backup on tape
 #
-path='/volume_b/volume_c/stanford2' # Without the final '/'
+path='/volume_b/volume_c/westenhoff_beamtimes' # Without the final '/'
 for i in $(cat tmp-compressionList.lst)
 do
 	echo "Compressing: ${i}"
