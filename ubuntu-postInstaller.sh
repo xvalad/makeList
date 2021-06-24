@@ -33,3 +33,6 @@ exit
 # fortran
 # c
 # cpp
+
+# Move show-applications button to top
+# Install dconf org > gnome > shell > extensions > dash-to-dock > show-apps-at-top
