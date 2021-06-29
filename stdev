@@ -43,3 +43,5 @@ echo " " | tr -d '\n'
 
 # 9th column - stdev of c
 cat $1 | grep Cell | awk '{delta = $5 - avg; avg += delta / NR; mean2 += delta * ($5 - avg); } END { print sqrt(mean2 / (NR-1)); }'  
+
+#
