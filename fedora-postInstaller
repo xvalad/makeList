@@ -1,14 +1,32 @@
 #!/bin/sh
 # Fedora 34
+Fedora 34
 # Nvidia drivers (Optimus)
-sudo dnf update -y
+# https://docs.fedoraproject.org/en-US/quick-docs/how-to-set-nvidia-as-primary-gpu-on-optimus-based-laptops/
+# Don’t enable wayland
+# disable secure boot
+sudo dnf update
+Gnome Software > Menu > Software Repositories
+Enable third party repositories
+Enable RPM Fusion for Fedora 
+sudo dnf update --refresh
+sudo dnf install gcc kernel-headers kernel-devel akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686
+sleep 600 && reboot
 reboot
-sudo rpm -Uvh http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
-sudo rpm -Uvh http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-dnf install akmod-nvidia
-sudo dnf install xorg-x11-drv-nvidia-cuda
-modinfo -F version nvidia
+sudo akmods --force
+sudo dracut --force
+sleep 300 && reboot
+check about
+sudo cp -p /usr/share/X11/xorg.conf.d/nvidia.conf /etc/X11/xorg.conf.d/nvidia.conf
+sudo nano /etc/X11/xorg.conf.d/nvidia.conf
+add to OutputClass
+	sudo nano /etc/X11/xorg.conf.d/nvidia.conf
 reboot
+glxinfo | egrep "OpenGL vendor|OpenGL renderer"
+screenfetch
+check about
+Optional
+	sudo dnf install xorg-x11-drv-nvidia-cuda
 
 # Brave
 sudo dnf install dnf-plugins-core
@@ -17,25 +35,75 @@ sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 sudo dnf install brave-browser
 
 # Teamviewer
+# https://www.teamviewer.com/en/download/linux/
 
 #zoom
+# https://zoom.us/download
 
+# vscode
+# https://code.visualstudio.com/download
+
+# Anaconda
+# https://repo.anaconda.com/archive/
+bash ~/Downloads/Anaconda3-2020.02-Linux-x86_64.sh
 
 # Sublime
 sudo rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg
 sudo dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
 sudo dnf install sublime-text
 
-
-
-# vscode
-
 # git
 sudo dnf install git-all
 git config --global user.name "xvalad"
 git config --global user.email adamsxvallejos@gmail.com
 git config --global core.editor nano
+reboot
+# simplenote
+sudo dnf install snapd
+sudo ln -s /var/lib/snapd/snap /snap
+sudo snap install simplenote
 
-# Anaconda
-bash ~/Downloads/Anaconda3-2020.02-Linux-x86_64.sh
 
+touch .ssh/config
+
+Host maxiv
+	HostName sftp.maxiv.lu.se
+	User avallejos
+
+Host backup
+
+	HostName backup.lundberg.gu.se
+	User adams
+
+Host hebbe1
+	HostName hebbe1.c3se.chalmers.se
+	User vadams
+
+Host hebbe2
+	HostName hebbe2.c3se.chalmers.se
+	User vadams
+
+Host hub19
+	HostName hub19.lundberg.gu.se
+	User adams
+
+Host calc1
+	HostName calc1.lundberg.gu.se
+	User adams
+
+Host hop
+	HostName hop.psi.ch 
+	User ext-vallejos_a
+
+Host *
+	IdentitiesOnly=yes
+
+# .bashrc
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias ls='ls --color=force'
+alias ll='ls -l --color=force'
+alias gitp='git add . && git commit -m "Updated: `date`" && git push'
+alias git='cat ~/xvalad/.token && git'
