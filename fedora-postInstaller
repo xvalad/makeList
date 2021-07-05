@@ -107,3 +107,8 @@ alias ls='ls --color=force'
 alias ll='ls -l --color=force'
 alias gitp='git add . && git commit -m "Updated: `date`" && git push'
 alias git='cat ~/xvalad/.token && git'
+
+# Possible Issues
+
+# If hard disks are not shown change 
+# 'SATA Operation' in the BIOS from 'RAID On' to 'AHCI'
