@@ -57,8 +57,10 @@ reboot
 
 # simplenote
 
+# Java
+sudo apt install default-jre -y
 
-# r 
+# r
 # julia
 # matlab - run online
 # fortran
